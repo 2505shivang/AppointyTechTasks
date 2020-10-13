@@ -1,0 +1,61 @@
+:root {
+    --global-font-family: "Roboto", sans-serif;
+    /* --global-button_color_pink-background-color: #e53167;
+    --global-button_color-color: #ffffff;*/
+    --global-blue_color-color: #3480e3;
+}
+
+html {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    font-family: var(--global-font-family);
+}
+
+.inner-wrapper {
+    padding: 10px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+#nav {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.col-sm-4 {
+    display: flex;
+    justify-content: center;
+}
+
+.symbol {
+    color: var(--global-blue_color-color);
+    padding-right: 10px;
+    font-size: large;
+}
+
+#underline {
+    border-width: medium;
+    border-bottom: solid;
+    border-color: var(--global-blue_color-color);
+}
+
+#heading {
+    font-weight: bold;
+}
+
+#content {
+    display: inline;
+    color: grey;
+}
+
+#author {
+    color: lightgray;
+    font-size: small;
+}
