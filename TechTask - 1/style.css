@@ -1,7 +1,5 @@
 :root {
     --global-font-family: "Roboto", sans-serif;
-    /* --global-button_color_pink-background-color: #e53167;
-    --global-button_color-color: #ffffff;*/
     --global-blue_color-color: #3480e3;
 }
 
@@ -34,6 +32,10 @@ body {
     justify-content: center;
 }
 
+p {
+    margin-bottom: 0px;
+}
+
 .symbol {
     color: var(--global-blue_color-color);
     padding-right: 10px;
@@ -46,16 +48,28 @@ body {
     border-color: var(--global-blue_color-color);
 }
 
-#heading {
-    font-weight: bold;
-}
-
 #content {
-    display: inline;
     color: grey;
+    display: inline;
+    padding-top: 0px;
 }
 
 #author {
     color: lightgray;
     font-size: small;
+}
+
+#footer {
+    margin-top: 70px;
+    border-top: solid;
+    border-bottom: solid;
+    border-color: lightgray;
+    border-width: thin;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: gray;
+}
+
+h6 {
+    font-size: 9px;
 }
