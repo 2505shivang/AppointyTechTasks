@@ -7,16 +7,22 @@ import (
 	"log"
 	"net/http"
 	"strings"
+	"time"
 )
 
+//Data Structure
+
 type Article struct {
-	ID       string `json:"id"`
-	Title    string `json:"title"`
-	Subtitle string `json:"subtitle"`
-	Content  string `json:"content"`
+	ID                string    `json:"id"`
+	Title             string    `json:"title"`
+	Subtitle          string    `json:"subtitle"`
+	Content           string    `json:"content"`
+	CreationTimestamp time.Time `json:"timestamp"`
 }
 
 var Articles []Article
+
+//handlers
 
 func homePage(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Welcome to the HomePage!")
@@ -34,6 +40,8 @@ func createNewArticle(w http.ResponseWriter, r *http.Request) {
 
 	var article Article
 	json.Unmarshal(reqBody, &article)
+
+	article.CreationTimestamp = time.Now()
 
 	Articles = append(Articles, article)
 	json.NewEncoder(w).Encode(article)
@@ -68,16 +76,49 @@ func returnSingleArticle(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	w.WriteHeader(http.StatusNotFound)
 	fmt.Println(key)
 	fmt.Println("Endpoint Hit: homePage")
+	return
 }
+
+//search
+func searchquery(w http.ResponseWriter, r *http.Request) {
+
+	v := r.FormValue("q")
+
+	var FoundArticles []Article
+
+	for _, article := range Articles {
+
+		intitle := strings.Contains(strings.ToLower(article.Title), strings.ToLower(v))
+		inSubtitle := strings.Contains(strings.ToLower(article.Subtitle), strings.ToLower(v))
+		inContent := strings.Contains(strings.ToLower(article.Content), strings.ToLower(v))
+
+		fmt.Println(inSubtitle)
+		fmt.Println(intitle)
+		fmt.Println(inContent)
+
+		if intitle == true || inSubtitle == true || inContent == true {
+			FoundArticles = append(FoundArticles, article)
+		}
+	}
+
+	json.NewEncoder(w).Encode(FoundArticles)
+	return
+}
+
+//server
 
 func handleRequests() {
 	http.HandleFunc("/", homePage)
 	http.HandleFunc("/articles", articles)
-	http.HandleFunc("/article/", returnSingleArticle)
+	http.HandleFunc("/articles/", returnSingleArticle)
+	http.HandleFunc("/articles/search", searchquery)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
+
+//main function
 
 func main() {
 	Articles = []Article{
