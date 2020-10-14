@@ -12,6 +12,12 @@ body {
     font-family: var(--global-font-family);
 }
 
+
+/* .wrapper {
+    max-width: 100%;
+    max-height: fit-content;
+} */
+
 .inner-wrapper {
     padding: 10px;
 }
