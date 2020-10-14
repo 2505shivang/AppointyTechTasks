@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strings"
 )
 
 type Article struct {
@@ -53,9 +54,28 @@ func articles(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func returnSingleArticle(w http.ResponseWriter, r *http.Request) {
+	parts := strings.Split(r.URL.String(), "/")
+	if len(parts) != 3 {
+		w.WriteHeader(http.StatusNotFound)
+		return
+	}
+	key := parts[2]
+
+	for _, article := range Articles {
+		if article.ID == key {
+			json.NewEncoder(w).Encode(article)
+		}
+	}
+
+	fmt.Println(key)
+	fmt.Println("Endpoint Hit: homePage")
+}
+
 func handleRequests() {
 	http.HandleFunc("/", homePage)
 	http.HandleFunc("/articles", articles)
+	http.HandleFunc("/article/", returnSingleArticle)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
