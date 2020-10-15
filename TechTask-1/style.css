@@ -12,12 +12,6 @@ body {
     font-family: var(--global-font-family);
 }
 
-
-/* .wrapper {
-    max-width: 100%;
-    max-height: fit-content;
-} */
-
 .inner-wrapper {
     width: 100vw;
     height: 100vh;
@@ -30,11 +24,16 @@ body {
     display: flex;
     justify-content: center;
     padding-top: 10px;
+    padding-right: 0px;
 }
 
 nav {
     padding-left: 0px!important;
     display: block!important;
+}
+
+span {
+    margin-left: 20%;
 }
 
 nav .col {
@@ -52,15 +51,18 @@ p {
 
 .symbol {
     color: var(--global-blue_color-color);
-    text-align: end;
     padding-right: 5px;
-    size: 20%;
+    font-size: 100%;
+    font-weight: bolder;
 }
 
-#underline {
-    border-width: medium;
-    border-bottom: solid;
-    border-color: var(--global-blue_color-color);
+hr {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 10%;
+    border-top: 3px solid var(--global-blue_color-color);
 }
 
 #content {
