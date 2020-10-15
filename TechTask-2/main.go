@@ -23,8 +23,8 @@ func handleRequests() {
 func main() {
 
 	modules.Articles = []modules.Article{
-		modules.Article{ID: "1", Title: "Hello", Subtitle: "Article Description", Content: "Article Content"},
-		modules.Article{ID: "2", Title: "Hello 2", Subtitle: "Article Description", Content: "Article Content"},
+		modules.Article{ID: 1, Title: "Hello", Subtitle: "Article Description", Content: "Article Content"},
+		modules.Article{ID: 2, Title: "Hello 2", Subtitle: "Article Description", Content: "Article Content"},
 	}
 
 	handleRequests()

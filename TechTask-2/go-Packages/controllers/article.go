@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"strconv"
 	"strings"
 
 	"../modules"
@@ -8,9 +9,9 @@ import (
 
 //GetArticleByID ...
 func GetArticleByID(ID string) (modules.Article, bool) {
-
+	Id, _ := strconv.Atoi(ID)
 	for _, article := range modules.Articles {
-		if article.ID == ID {
+		if article.ID == Id {
 			return article, true
 			//json.NewEncoder(w).Encode(article)
 		}
