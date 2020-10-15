@@ -9,3 +9,6 @@ A comparison of my UI Clone and the UI provided:
 
 ![picture](./images/left.png)
 ![picture](./images/left.png)
+
+Deployed link - "https://2505shivang.github.io/AppointyTechTasks/TechTask-1/index.html"
+
