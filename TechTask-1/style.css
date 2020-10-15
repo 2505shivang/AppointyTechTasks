@@ -19,9 +19,8 @@ body {
 } */
 
 .inner-wrapper {
-    
     width: 100vw;
-    height:100vh;
+    height: 100vh;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
@@ -32,17 +31,17 @@ body {
     justify-content: center;
     padding-top: 10px;
 }
-   
+
 nav {
     padding-left: 0px!important;
     display: block!important;
 }
 
-nav .col{
+nav .col {
     padding: 0;
 }
 
-nav .row{
+nav .row {
     justify-content: space-between;
 }
 
@@ -89,7 +88,7 @@ h6 {
     font-size: 9px;
 }
 
-.body{
+.body {
     height: 90%;
 }
 
@@ -102,12 +101,13 @@ h6 {
 img {
     width: 100%;
     max-height: 33vh;
+    margin-top: 5%;
 }
 
-.col{
+.col {
     text-align: center;
 }
 
-footer img{
+footer img {
     width: 30%;
 }
