@@ -54,25 +54,47 @@ func postArticle(w http.ResponseWriter, r *http.Request) {
 func getAllArticles(w http.ResponseWriter, r *http.Request) {
 	limit := 5
 	page, begin := utils.Pagination(r, limit)
-	mutex.Lock()
-	pages, TotalPages, results := utils.PagingArticle(page, begin, limit)
-	mutex.Unlock()
+	if begin >= len(modules.Articles) {
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("Pages Ended"))
+	} else {
 
-	json.NewEncoder(w).Encode(struct {
-		Total    int               `json:"total"`
-		Page     int               `json:"page"`
-		Pages    int               `json:"pages"`
-		NextPage int               `json:"nextpage"`
-		PrevPage int               `json:"previouspage"`
-		Articles []modules.Article `json:"docs"`
-	}{
-		Total:    TotalPages,
-		Page:     page,
-		Pages:    pages,
-		NextPage: page + 1,
-		PrevPage: page - 1,
-		Articles: results,
-	})
+		mutex.Lock()
+		pages, TotalPages, results := utils.PagingArticle(page, begin, limit)
+		mutex.Unlock()
+		var next, prev int
+		if page == pages {
+			next = 1
+			prev = page - 1
+		} else {
+			if page-1 < 0 {
+				next = page + 1
+				prev = 0
+			} else {
+				next = page + 1
+				prev = page - 1
+			}
+		}
+
+		w.WriteHeader(http.StatusOK)
+		json.NewEncoder(w).Encode(struct {
+			Total    int               `json:"total"`
+			Page     int               `json:"page"`
+			Pages    int               `json:"pages"`
+			NextPage int               `json:"nextpage"`
+			PrevPage int               `json:"previouspage"`
+			Articles []modules.Article `json:"docs"`
+		}{
+			Total:    TotalPages,
+			Page:     page,
+			Pages:    pages,
+			NextPage: next,
+			PrevPage: prev,
+			Articles: results,
+		})
+
+	}
+
 	fmt.Printf("Current Page: %d, Begin: %d\n", page, begin)
 	fmt.Println("Endpoint Hit: returnAllArticles")
 }
