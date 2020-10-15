@@ -10,7 +10,7 @@ Please find the deployed link here - https://2505shivang.github.io/AppointyTechT
 
 
  UI Clone :-<br>
-  <img src="https://user-images.githubusercontent.com/58561050/96129653-87615e80-0f14-11eb-981d-df6b60048cf0.jpg" width="200" height="400" />
+  <img src="https://user-images.githubusercontent.com/58561050/96145148-8d5e3c00-0f22-11eb-9f19-bc55904fee1b.jpeg" width="200" height="400" />
   </p>
 
 
