@@ -7,7 +7,7 @@ import (
 
 //Article Schema ...
 type Article struct {
-	ID                string    `json:"id"`
+	ID                int       `json:"id"`
 	Title             string    `json:"title"`
 	Subtitle          string    `json:"subtitle"`
 	Content           string    `json:"content"`
@@ -24,6 +24,8 @@ func CreateNewArticle(reqBody []byte) (Article, bool) {
 	if err != nil {
 		return article, true
 	}
+
+	article.ID = 1 + len(Articles)
 	article.CreationTimestamp = time.Now()
 	Articles = append(Articles, article)
 	return article, false
